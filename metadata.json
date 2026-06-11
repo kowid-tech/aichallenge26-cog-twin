@@ -1,0 +1,6 @@
+{
+  "name": "Cognitive Learning Twin",
+  "description": "A cognitive learning twin that analyzes prerequisite mastery and prescribes optimal study pathways.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
