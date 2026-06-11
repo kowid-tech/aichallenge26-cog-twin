@@ -1,3 +1,5 @@
+<div align="center">
+
 # The Cognitive Learning Twin Agent 🧠
 
 *A dynamic, cooperative digital twin modeling how students learn, forget, and progress in real-time.*
@@ -5,28 +7,23 @@
 
 ---
 
-> [!NOTE]
-> **Project Philosophy:** Traditional education models focus strictly on quiz percentages and exam grades. But marks don't explain *how* a student is thinking, or *why* they forget formulas. This application implements a **Cognitive Learning Twin**—a dynamic model of a student's conceptual strengths, decay rates, and prerequisite dependencies.
+## 📖 Project Overview
+
+Traditional education metrics focus heavily on grades and quiz percentages. However, these static scores fail to reveal how a student is actually thinking, why they hit specific hurdles, or when they are about to forget formulas.
+
+**The Cognitive Learning Twin** resolves this by modeling a student's cognitive state as a dynamic digital twin. It continuously tracks:
+- **Conceptual Mastery:** Real-time understanding of math concepts.
+- **Memory Decay Rates:** Predicts exactly when a student is likely to forget a topic.
+- **Prerequisite Dependencies:** Identifies the root cause of learning bottlenecks (e.g., struggling with Algebra because the foundation of Fractions is weak).
 
 ---
 
-## 📽️ Demo Video Walkthrough & Script Alignment
+## 🛠️ Architecture & Core Features
 
-This repository is built to demonstrate the Cognitive Learning Twin dashboard. The following sections outline the application's design, features, and walkthrough scenarios mapped to the five demo scenes, incorporating voiceover cues and presentation flows.
+The system consists of three main modules: the **Interactive Knowledge Graph**, the **Left Sidebar Metrics Panel**, and the **Right-side Cooperative Agents Panel**.
 
-### Scene 1: Introduction (The Problem with Just "Marks")
-* **Visual Action:** Show the dashboard home screen. Hover the cursor over the Performance Overviews and the student's profile card on the left.
-* **Indian English Voiceover Cue:** *"Hello everyone! Generally, in our schools, we only focus on marks, quiz percentages, and exam grades, correct? But the big problem is—these scores don't tell us how a student is actually thinking..."*
-* **Key Code Components:**
-  * [App.tsx](file:///d:/Kowid%20Dev/twin-repo/src/App.tsx) — Main entry point managing global state, presets, and active topic sync.
-  * [SidebarMetrics.tsx](file:///d:/Kowid%20Dev/twin-repo/src/components/SidebarMetrics.tsx) — Renders the student's cognitive metrics, progress tracking, and chronological mastery matrix on the left panel.
-
-### Scene 2: The Interactive Knowledge Graph (No More Blind Tuition)
-* **Visual Action:** Click on the **Cognitive Graph Mapping** tab (Mastery Matrix tab on left, visual bubbles in the center). Show the interactive bubbles (**Fractions**, **Algebra/Linear Equations**, **Decimals**, **Geometry**, **Word Problems**) connecting and lighting up.
-* **Indian English Voiceover Cue:** *"Achaa, look at this center screen. This is our Interactive Knowledge Graph. Normally, if a student struggles in Algebra, a home tutor will just give them more Algebra worksheets. But our system is smart! It shows that Sarah is struggling in Algebra only because her basic concept of Fractions is weak..."*
-* **Key Code Components:**
-  * [CognitiveGraph.tsx](file:///d:/Kowid%20Dev/twin-repo/src/components/CognitiveGraph.tsx) — Houses the SVG canvas, dependency curves, node rendering, and mastery-based status coloring.
-  * [presetData.ts](file:///d:/Kowid%20Dev/twin-repo/src/data/presetData.ts) — Configures the pathways and topic definitions (`fractions`, `decimals`, `geometry`, `linear_equations`, `word_problems`).
+### 1. Interactive Knowledge Graph
+The center screen visualizes the student's learning pathways and prerequisite dependencies. Rather than delivering generic worksheets, the graph illuminates root gaps. For example, if a student struggles in Algebra, the graph exposes that the core bottleneck originates in Fractions, letting educators or the AI tutor rebuild foundational concepts first.
 
 ```mermaid
 graph TD
@@ -43,62 +40,41 @@ graph TD
     style word_problems stroke:#6366f1,stroke-width:2px,fill:#e0e7ff
 ```
 
-### Scene 3: Meet the Cooperative Assistant Agents
-* **Visual Action:** Click on the **Cooperative Agents** tab on the right side panel. Toggle to show the tab bar containing: **Central Twin**, **Retention**, **Skill Transfer**, and **Accessibility**.
-* **Indian English Voiceover Cue:** *"Now, to clear these personalized doubts, our main AI Twin works with three specialized helper agents on the right side. Let's see what they do, step-by-step."*
-* **Key Code Components:**
-  * [AgentPanel.tsx](file:///d:/Kowid%20Dev/twin-repo/src/components/AgentPanel.tsx) — Renders the tab selection and individual workspaces for the specialized agents.
+### 2. Cooperative Assistant Agents
+The main Cognitive Twin coordinates with three specialized helper agents on the right panel to customize learning resources:
+* **The Retention Agent (Spaced Repetition):** Audits memory decay intervals. It uses an active Leitner recall deck to test memory retention at perfect intervals so concepts transition into long-term memory.
+* **The Skill Transfer Agent (Cross-Domain Analogy):** Bridges abstract math into familiar real-world domains. If a student loves music or physics, it translates fractional ratios into guitar chord signature meters, recipe splits, or liquid displacement scales.
+* **The Accessibility Agent (Interface Customization):** Provides user overrides to counter cognitive overload. Users can instantly switch on high-contrast views, dyslexic-friendly fonts, wide character spacing, and simplified language structures.
 
-#### A. The Retention Agent (Beating Exam Forgetfulness)
-* **Visual Action:** Click on the **Retention** agent. Show the Spaced Repetition flashcards.
-* **Indian English Voiceover Cue:** *"First is our Retention Agent. It uses special memory formulas to calculate exactly when a student is about to forget a topic... it gives targeted revision cards at the perfect time so the concept stays in memory forever."*
-* **Functionality:** Implements a Leitner deck system where correct recall moves cards up in box levels, and forgotten items reset to Box 1, optimizing learning efficiency.
-
-#### B. The Skill Transfer Agent (Connecting Math to Real Life)
-* **Visual Action:** Click on the **Skill Transfer** agent. Show the custom analogy slider connecting fractions to **Music** scales, **Finance**, or **Physics**.
-* **Indian English Voiceover Cue:** *"Next, we have the Skill Transfer Agent. Some kids hate maths, but they love music or sports! So, this agent translates maths definitions into analogies they love. For example, it explains fraction ratios using guitar chord scales..."*
-* **Functionality:** Operates an interactive slider simulating domain-specific partition mapping (e.g., quarter-notes for 1/4 rhythm scale).
-
-#### C. The Accessibility Agent (No Student Left Behind)
-* **Visual Action:** Click on the **Accessibility** agent. Show the switches for **Dyslexia-friendly font** and wide spacing. Turn them on to show the UI change.
-* **Indian English Voiceover Cue:** *"And third is our Accessibility Agent. If a student has dyslexia or finds visual screens exhausting, they can turn on high-contrast modes, dyslexia-friendly fonts, or simplified language with one single click. It completely customizes the layout..."*
-* **Functionality:** Dynamically alters styling, character tracking, and line height adjustments across chat logs and dashboard contents.
-
-### Scene 4: Dynamic Practice & Live Twin Update
-* **Visual Action:** Disable the dyslexia spacing. Click on **Practice Quiz** on the right. Select/Type the correct answer (e.g., Yes, 2/6 is identical to 1/3) and click **Submit Answer**. Show the success pop-up.
-* **Indian English Voiceover Cue:** *"Let’s see it work live! The system gives Sarah a quick question about equivalent fractions. As soon as Sarah submits the correct answer... look what happens! The AI immediately detects her conceptual block is gone, her Fractions mastery level updates from 65% up to 85% live, and the whole graph shifts to focus on the next step. Simple, isn't it?"*
-* **Functionality:** Evaluating the quiz expands the mastery levels dynamically by 15%, triggering prerequisite graph node color transformations.
-
-### Scene 5: Summary (The Big Vision)
-* **Visual Action:** Switch back to the **Learning Advisor** tab. Scroll slowly down to show the weekly progress insights.
-* **Indian English Voiceover Cue:** *"By transforming traditional, boring tracking into this smart, interactive Digital Twin, we improve learning efficiency by 40% to 60%. No more delayed help, no more exam stress. Every single child gets premium, custom tutoring absolutely scale-free. Thank you so much for watching our demo!"*
+### 3. Dynamic Practice & Real-time Updates
+The **Practice Quiz** module checks the student's mastery interactively. Answering diagnostic questions correctly (e.g., equivalent fractions conversions) dynamically increases the student's mastery level in that topic (adding +15%), updates the knowledge graph, and shifts focus toward next-level topics.
 
 ---
 
-## 🚀 Technical Highlights & Features
+## ⚙️ Interactive Modes & How to Use
 
-### 🔄 What-If Parameter Playground
-Developers and educators can simulate custom academic scenarios using the **What-If Simulator** tab in the sidebar:
-- Adjust individual concept masteries using range sliders.
-- Watch prerequisite pathways recalculate recommended paths in real time.
-- View and copy the raw [Schema JSON Specification](file:///d:/Kowid%20Dev/twin-repo/src/components/SidebarMetrics.tsx#L277-L309) for enterprise LMS integration.
-
-### 👥 Preloaded Academic Presets
-To facilitate demo presentations, four preset student profiles are preloaded:
-| Profile ID | Pace | Stalling Risk | Primary Gap / Focus |
+### 👥 Student Presets
+The application loads four preset student profiles to showcase varying conceptual states and stalling risks:
+| Preset Profile ID | Pace | Stalling Risk | Diagnostic Focus |
 | :--- | :--- | :--- | :--- |
-| **Demo Student** | Steady | Moderate | Fractions prerequisite bottleneck for Linear Equations |
-| **Struggling** | Struggling | High | Multiple foundational gaps in Arithmetic & Decimals |
-| **Transitioning** | Intermittent | Low | Decimals gap, close to unlocking Algebra modules |
-| **Advanced** | Accelerated | Low | Close to full high-school algebraic formulation sets |
+| **Demo Student** | Steady | Moderate | Prerequisite Fractions bottleneck blocking Linear Algebra progress. |
+| **Struggling** | Struggling | High | Multiple concurrent gaps in basic arithmetic and decimals. |
+| **Transitioning** | Intermittent | Low | Transitioning from basic arithmetic to intermediate Algebra. |
+| **Advanced** | Accelerated | Low | Close to unlocking advanced high-school level word problems. |
+
+### 🔄 What-If Simulator
+Using the **What-If Simulator** tab in the sidebar, educators can:
+1. Adjust individual concept masteries using ranges from 0% to 100%.
+2. See the recommendation engine recalculate focal areas instantly.
+3. Export and copy the raw [Schema JSON Specification](file:///d:/Kowid%20Dev/twin-repo/src/components/SidebarMetrics.tsx#L277-L309) payload to integrate with enterprise Learning Management Systems (LMS).
 
 ---
 
-## 🛠️ Local Installation and Setup
+## 🚀 Installation & Setup
 
 ### Prerequisites
 - **Node.js** (v18+ recommended)
-- **Gemini API Key** (optional; fallback Socratic pedagogical companion simulations run locally if key is missing)
+- **Gemini API Key** (Optional. If the API key is not configured, the application falls back to localized pedagogical companion simulations.)
 
 ### Getting Started
 
@@ -107,27 +83,27 @@ To facilitate demo presentations, four preset student profiles are preloaded:
    npm install
    ```
 
-2. **Configure API Keys:**
-   Create a `.env.local` file in the root directory (using `.env.example` as a template) and add your key:
+2. **Configure Environment Variables:**
+   Create a `.env.local` file in the root directory (based on `.env.example`) and add your Gemini API key:
    ```env
    GEMINI_API_KEY=your_gemini_api_key_here
    ```
 
-3. **Run Development Server:**
+3. **Run the Application:**
    ```bash
    npm run dev
    ```
 
-4. **Access the Dashboard:**
-   Open [http://localhost:5173](http://localhost:5173) in your web browser.
+4. **View in Browser:**
+   Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 ---
 
 ## 📂 Codebase Reference Directory
 
-- **[src/App.tsx](file:///d:/Kowid%20Dev/twin-repo/src/App.tsx)**: Main application logic, preset handlers, and chat/quiz flow coordination.
-- **[src/components/CognitiveGraph.tsx](file:///d:/Kowid%20Dev/twin-repo/src/components/CognitiveGraph.tsx)**: SVG visualization map of student topic node connections.
-- **[src/components/SidebarMetrics.tsx](file:///d:/Kowid%20Dev/twin-repo/src/components/SidebarMetrics.tsx)**: Left side metrics, What-If simulation slider inputs, and JSON export views.
-- **[src/components/AgentPanel.tsx](file:///d:/Kowid%20Dev/twin-repo/src/components/AgentPanel.tsx)**: Spaced repetition widgets, analogy domain trackers, and accessibility layout switches.
-- **[src/data/presetData.ts](file:///d:/Kowid%20Dev/twin-repo/src/data/presetData.ts)**: Knowledge concepts, dependency links, preset database matrices, and Leitner flashcard card pools.
-- **[src/types.ts](file:///d:/Kowid%20Dev/twin-repo/src/types.ts)**: TypeScript models for student profiles, topic matrices, advisor records, and agent roles.
+- **[src/App.tsx](file:///d:/Kowid%20Dev/twin-repo/src/App.tsx)**: Main application logic, preset handler states, and panel state coordination.
+- **[src/components/CognitiveGraph.tsx](file:///d:/Kowid%20Dev/twin-repo/src/components/CognitiveGraph.tsx)**: Coordinates SVG layout pathways, node drawing, and mastery-based status coloring.
+- **[src/components/SidebarMetrics.tsx](file:///d:/Kowid%20Dev/twin-repo/src/components/SidebarMetrics.tsx)**: Displays the mastery matrix, Feldern-Silverman learning style vectors, and the What-If simulation slider fields.
+- **[src/components/AgentPanel.tsx](file:///d:/Kowid%20Dev/twin-repo/src/components/AgentPanel.tsx)**: Implements spaced repetition flashcards, analogy translation mapping, and accessibility switches.
+- **[src/data/presetData.ts](file:///d:/Kowid%20Dev/twin-repo/src/data/presetData.ts)**: Topic definitions, prerequisite path structures, student presets, and default Leitner cards.
+- **[src/types.ts](file:///d:/Kowid%20Dev/twin-repo/src/types.ts)**: Shared TypeScript structures for profiles, agents, advisor recommendations, and topic states.
